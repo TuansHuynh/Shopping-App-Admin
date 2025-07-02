@@ -1,0 +1,143 @@
+@use '../../assets/global.scss' as *;
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $bg-white;
+    height: 10dvh;
+    border-bottom: 2px solid $bg-smooth;
+
+    .logo {
+        color: $text-blue;
+        font-family: 'Roboto', sans-serif;
+        font-size: 25px;
+        font-weight: 600;
+        text-decoration: none;
+        margin: 5px;
+        padding: 10px;
+        padding-right: 60px;
+        transition: all 0.2s ease-in-out;
+        border-right: 2px solid $text-smooth;
+
+        &:hover {
+            color: rgb(0, 0, 220);
+        }
+    }
+
+    .navbar_menu {
+        display: flex;
+        align-items: center;
+        margin: 0 50px;
+
+        .notification_container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+
+            .notification {
+                position: relative;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 30px;
+                cursor: pointer;
+
+//      fix active scss fro bell don't show border
+                // .active_bell {
+                //     border: 2px solid $bg-black;
+                //     border-radius: 50%;
+                //     color: red;
+                // }
+
+
+                span {
+                    position: absolute;
+                    top: -5px;
+                    right: -5px;
+                    min-width: 16px;
+                    height: 16px;
+                    padding: 0 4px;
+                    background-color: red;
+                    color: white;
+                    font-size: 12px;
+                    font-weight: bold;
+                    border-radius: 999px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    line-height: 1;
+                }
+            }
+
+            .notification_tab {
+                position: fixed;
+                background-color: $bg-white;
+                top: 8dvh;
+                margin-right: 250px;
+            }
+        }
+
+
+        .search {
+            display: flex;
+            align-items: center;
+            background-color: $bg-white;
+            margin: 0 0 0 10px;
+            padding: 2px 5px;
+            border-radius: 20px;
+            transition: all 0.2s ease-in-out;
+
+            .search_icon {
+                color: $bg-smooth;
+                margin-right: 5px;
+                transition: all 0.2s ease-in-out;
+                cursor: pointer;
+
+                &:hover {
+                    color: $text-black;
+                }
+            }
+
+            input {
+                font-size: 16px;
+                outline: none;
+                border: none;
+                border-radius: 10px;
+                margin-left: 5px;
+                padding: 10px;
+                width: 150px;
+                transition: all 0.2s ease-in-out;
+
+                &:focus,
+                &:hover {
+                    background-color: $bg-smooth;
+                }
+            }
+        }
+
+        .profile_container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+
+            .profile {
+                display: flex;
+                align-items: center;
+                position: relative;
+
+                .logo-profile {
+                    width: 40px;
+                    margin: 5px;
+                }
+            }
+
+            .logout_tab {
+                position: fixed;
+                top: 8dvh;
+                background-color: $bg-white;
+            }
+        }
+    }
+}

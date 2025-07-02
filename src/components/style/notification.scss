@@ -1,0 +1,23 @@
+@use '../../assets/global.scss' as *;
+
+.notifications{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $line-black;
+    padding: 10px;
+
+    .notification_top{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .notification_main{
+        display: flex;
+    }
+
+    .notification_bottom{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

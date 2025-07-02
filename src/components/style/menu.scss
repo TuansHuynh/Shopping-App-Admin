@@ -1,0 +1,48 @@
+@use '../../assets/global.scss' as *;
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    min-height: 85dvh;
+    padding:5px;
+
+    .menu_item {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        margin: 5px;
+        padding: 5px;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+
+        .icons {
+            color: $text-black;
+            width: 35px;
+            padding: 5px;
+        }
+
+        .menu_item_content {
+            font-size: 20px;
+            color: $text-black;
+            transition: all 0.2s ease-in-out;
+
+        }
+
+        &:hover {
+            background-color: $bg-smooth;
+        }
+
+        &.active {
+            background-color: $bg-blue;
+            .menu_item_content {
+                color: $text-primary;
+            }
+            .icons {
+                color: $text-primary;
+            }
+        }
+    }
+}
