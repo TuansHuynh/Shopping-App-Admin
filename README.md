@@ -37,5 +37,10 @@ To start the development server, run:
 npm run dev
 ```
 
+## Technical In My Wensite
 
-123
+# Interface:  React + TypeScript
+
+# Logic: Spring Framework
+
+# Database: MySQL
