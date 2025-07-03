@@ -1,37 +1,36 @@
-import { Icons } from "../components/common/icons"
 import "./Sass/dashboard.scss"
+import { Icons } from "../components/common/icons"
 
 export default function Dasboard() {
 
-    const menuItem = [
-        { label: 'Total Orders', icon: <Icons.Shopping_Bag className="icons" />, quantity: 1 },
-        { label: 'Total Customers', icon: <Icons.User_Group className="icons" />, quantity: 2 },
-        { label: 'Total Products', icon: <Icons.Product className="icons" />, quantity: 2 },
-    ]
-
     return (
-        <>
-            <div className="dashboard">
-                {menuItem.map((item) => (
-                    <div className="container">
-                        <div className="icon">
-                            {item.icon}
-                        </div>
-                        <div className="content">
-                            <div className="title">
-                                {item.label}
-                            </div>
-                            <div className="quantity">
-                                {item.quantity}
-                            </div>
-                        </div>
-                    </div>
-                ))}
+        <div className="dashboard">
+            <div className="box box1 total_table">
+                <div className="icon"> <Icons.Shopping_Bag className="icons" /> </div>
+                <div className="title">
+                    <div className="label"> Total Order </div>
+                    <div className="quantity"> 1 </div>
+                </div>
             </div>
+            <div className="box box2 total_table">
+                <div className="icon"> <Icons.User_Group className="icons" /> </div>
+                <div className="title">
+                    <div className="label"> Total Customer </div>
+                    <div className="quantity"> 1 </div>
+                </div>
+            </div>
+            <div className="box box3 total_table">
+                <div className="icon"> <Icons.Product className="icons" /> </div>
+                <div className="title">
+                    <div className="label"> Total Product </div>
+                    <div className="quantity"> 1 </div>
+                </div>
+            </div>
+            <div className="box box4 chartBar">box4 : This is Chart Bar</div>
+            <div className="box box5 stock_alert">box5: This is Notification when product in-stock or out-stock</div>
+            <div className="box box6 user_register">box6: Ths is nostification when user register</div>
+            <div className="box box7 notification">box7: This Is Notification</div>
 
-            <div>
-                
-            </div>
-        </>
+        </div>
     )
 }

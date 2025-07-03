@@ -7,17 +7,18 @@ import { Outlet } from "react-router-dom";
 export default function Layout() {
     return (
         <div className='layout'>
+            
             <Navbar />
 
-            <div className='main_container'>
-                <div className='menu_container'>
+            <div className='container'>
+                <div className='menuContainer'>
                     <Menu />
 
                     <div>
                         <Footer />
                     </div>
                 </div>
-                <div className='content_container'>
+                <div className='contenContainer'>
                     <Outlet />
                 </div>
             </div>
