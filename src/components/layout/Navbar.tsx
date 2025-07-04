@@ -1,5 +1,5 @@
 import '../style/navbar.scss'
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logout from '../common/Logout';
 import { useRef, useState } from 'react';
 import { Icons } from '../common/icons';
@@ -10,16 +10,15 @@ export default function Navbar() {
 
     const [showLogout, setShowLogout] = useState(false)
     const logoutRef = useRef<HTMLDivElement>(null)
+    useClickOutside(logoutRef, () => setShowLogout(false))
 
     const [showNotification, setShowNotification] = useState(false)
     const notificationRef = useRef<HTMLDivElement>(null);
+    useClickOutside(notificationRef, () => setShowNotification(false));
 
     const notificationCount = 10;
     const userName = 'TunaSia'
     const Title = 'Control Panel'
-
-    useClickOutside(notificationRef, () => setShowNotification(false));
-    useClickOutside(logoutRef, () => setShowLogout(false))
 
     return (
         <div className="navbar">
@@ -31,9 +30,9 @@ export default function Navbar() {
             <div className='navbar_menu'>
                 <div className='notification_container' ref={notificationRef}>
                     <div className="notification"
-                        onClick={ () => (setShowNotification(prev => !prev)) }
-                        >
-                        <Icons.Bell className="bell"/>
+                        onClick={() => (setShowNotification(prev => !prev))}
+                    >
+                        <Icons.Bell className="bell" />
                         <span>{notificationCount > 9 ? '9+' : notificationCount}</span>
                     </div>
 

@@ -3,21 +3,18 @@
 .layout{
     background-color: $bg-smooth;
 
-    .main_container{
+    .container{
         display: flex;
 
-        .menu_container{
+        .menuContainer{
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             background-color: $bg-white;
-            margin-right: 20px;
         }
 
-        .content_container{
-            display: flex;
-            justify-content: center;
-            width: 180vh;
+        .contenContainer{
+            width: 100%;
         }
     }
 }

@@ -8,22 +8,19 @@
     height: 10dvh;
     border-bottom: 2px solid $bg-smooth;
 
-    .logo {
-        color: $text-blue;
-        font-family: 'Roboto', sans-serif;
-        font-size: 25px;
-        font-weight: 600;
-        text-decoration: none;
-        margin: 5px;
-        padding: 10px;
-        padding-right: 60px;
-        transition: all 0.2s ease-in-out;
-        border-right: 2px solid $text-smooth;
+        .logo {
+            color: $text-blue;
+            font-family: 'Roboto', sans-serif;
+            font-size: 26px;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0 20px;
+            transition: all 0.2s ease-in-out;
 
-        &:hover {
-            color: rgb(0, 0, 220);
+            &:hover {
+                color: rgb(0, 0, 220);
+            }
         }
-    }
 
     .navbar_menu {
         display: flex;
@@ -42,14 +39,6 @@
                 justify-content: center;
                 width: 30px;
                 cursor: pointer;
-
-//      fix active scss fro bell don't show border
-                // .active_bell {
-                //     border: 2px solid $bg-black;
-                //     border-radius: 50%;
-                //     color: red;
-                // }
-
 
                 span {
                     position: absolute;
