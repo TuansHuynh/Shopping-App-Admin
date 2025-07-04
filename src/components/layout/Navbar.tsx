@@ -1,5 +1,5 @@
 import '../style/navbar.scss'
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logout from '../common/Logout';
 import { useRef, useState } from 'react';
 import { Icons } from '../common/icons';
