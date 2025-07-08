@@ -114,9 +114,11 @@
             .profile {
                 display: flex;
                 align-items: center;
+                text-decoration: none;
                 position: relative;
 
                 .logo-profile {
+                    color: $text-black;
                     width: 40px;
                     margin: 5px;
                 }
