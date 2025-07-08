@@ -1,0 +1,53 @@
+.product_list {
+    max-height: 500px;
+    overflow-y: auto;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    thead th {
+        position: sticky;
+        top: 0;
+        background-color: #f4f4f4;
+        z-index: 2;
+    }
+
+    .menu_list {
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        &.menu_taskbar {
+            font-weight: bold;
+        }
+
+        &.list_product_taskbar:hover {
+            background-color: #f0f8ff;
+        }
+    }
+
+    img {
+        border-radius: 4px;
+    }
+
+    // 💅 Scrollbar style đẹp
+    scrollbar-width: thin;
+    scrollbar-color: #3730ff transparent;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #90caf9;
+        border-radius: 10px;
+    }
+}

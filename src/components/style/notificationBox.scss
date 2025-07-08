@@ -1,0 +1,41 @@
+.notification-box {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid;
+
+    p {
+        margin: 0;
+        color: #333;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    &.in-stock {
+        border-color: #27ae60;
+        background-color: #eafaf1;
+
+        .dot {
+            background-color: #27ae60;
+        }
+    }
+
+    &.out-stock {
+        border-color: #e74c3c;
+        background-color: #fdecea;
+
+        .dot {
+            background-color: #e74c3c;
+        }
+    }
+}

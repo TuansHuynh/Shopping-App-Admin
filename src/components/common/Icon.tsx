@@ -33,6 +33,8 @@ export default function Icon() {
                 <Icons.Product/>
                 <Icons.Feedback/>
                 <Icons.Inventory/>
+                <Icons.Import/>
+                <Icons.CheckCircle/>
             </div>
         </div>
     )
