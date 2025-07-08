@@ -1,0 +1,41 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="100" height="100" rx="16" fill="url(#bgGradient)" />
+
+    <!-- Grid panels -->
+    <rect x="12" y="14" width="26" height="26" rx="4" fill="#FFFFFF" stroke="#E5E7EB"
+        stroke-width="1" />
+    <rect x="44" y="14" width="44" height="12" rx="3" fill="#F3F4F6" />
+    <rect x="44" y="30" width="44" height="10" rx="3" fill="#E5E7EB" />
+
+    <rect x="12" y="48" width="76" height="10" rx="3" fill="#F3F4F6" />
+    <rect x="12" y="64" width="48" height="10" rx="3" fill="#E5E7EB" />
+
+    <!-- Gear icon -->
+    <g transform="translate(76,76)">
+        <circle r="10" fill="#FFFFFF" stroke="#4F46E5" stroke-width="2" />
+        <g fill="#4F46E5">
+            <rect x="-1" y="-14" width="2" height="4" rx="1" />
+            <rect x="-1" y="10" width="2" height="4" rx="1" />
+            <rect x="-14" y="-1" width="4" height="2" rx="1" />
+            <rect x="10" y="-1" width="4" height="2" rx="1" />
+            <rect x="-8" y="-8" width="2" height="2" transform="rotate(45)" rx="1" />
+            <rect x="6" y="-8" width="2" height="2" transform="rotate(45)" rx="1" />
+            <rect x="-8" y="6" width="2" height="2" transform="rotate(45)" rx="1" />
+            <rect x="6" y="6" width="2" height="2" transform="rotate(45)" rx="1" />
+        </g>
+    </g>
+
+    <!-- Decorative lines -->
+    <line x1="12" y1="90" x2="88" y2="90" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="4 2" />
+    <line x1="50" y1="14" x2="50" y2="40" stroke="#D1D5DB" stroke-width="1" stroke-dasharray="2 2" />
+
+    <!-- Gradient -->
+    <defs>
+        <linearGradient id="bgGradient" x1="0" y1="0" x2="100" y2="100"
+            gradientUnits="userSpaceOnUse">
+            <stop stop-color="#6366F1" />
+            <stop offset="1" stop-color="#8B5CF6" />
+        </linearGradient>
+    </defs>
+</svg>

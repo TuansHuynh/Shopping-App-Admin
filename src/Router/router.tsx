@@ -1,4 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
+import MainLayout from "../views/MainLayout";
+import GuetsLayout from "../views/GuestLayout";
 import Dasboard from "../pages/Dashboard";
 import Customer from '../pages/Customer';
 import Feedback from "../pages/Feedback";
@@ -7,13 +9,13 @@ import Order from "../pages/Order";
 import Product from "../pages/Product";
 import SaleReport from "../pages/SaleReport";
 import Ticket from "../pages/Ticket";
-import Layout from "../views/Layout";
 import NotFound from "../components/layout/NotFound";
+import Login from "../components/layout/Login";
 
 export const router = createBrowserRouter([
     {
         path: '/',
-        element: <Layout />,
+        element: <MainLayout />,
         children: [
             {
                 path: '/dashboard',
@@ -56,5 +58,15 @@ export const router = createBrowserRouter([
     {
         path: '*',
         element: <NotFound/>
-    }
+    },
+    {
+        path: '/',
+        element: <GuetsLayout />,
+        children: [
+            {
+                path: '/login',
+                element: <Login/>
+            }
+        ]
+    },
 ])

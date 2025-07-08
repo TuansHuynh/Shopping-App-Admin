@@ -17,8 +17,19 @@ export default function Navbar() {
     useClickOutside(notificationRef, () => setShowNotification(false));
 
     const notificationCount = 10;
-    const userName = 'TunaSia'
+
     const Title = 'Control Panel'
+
+    const isLogin = true;
+    const userName = isLogin ? 'TunaSia' : 'Login'
+
+    const onLogout = () => {
+        setShowLogout(prev => !prev);
+    }
+
+    const onNotification = () => {
+        setShowNotification(prev => !prev);
+    }
 
     return (
         <div className="navbar">
@@ -30,7 +41,7 @@ export default function Navbar() {
             <div className='navbar_menu'>
                 <div className='notification_container' ref={notificationRef}>
                     <div className="notification"
-                        onClick={() => (setShowNotification(prev => !prev))}
+                        onClick={onNotification}
                     >
                         <Icons.Bell className="bell" />
                         <span>{notificationCount > 9 ? '9+' : notificationCount}</span>
@@ -48,9 +59,9 @@ export default function Navbar() {
                 </div>
 
                 <div className='profile_container' ref={logoutRef}>
-                    <div className='profile' onClick={() => setShowLogout(prev => !prev)}>
+                    <div className='profile' onClick={onLogout}>
                         <Icons.User className='logo-profile' />
-                        <span>{userName ? userName : 'Username'}</span>
+                        <span> {userName} </span>
                     </div>
                     <div className='logout_tab'>
                         {showLogout && <Logout />}
