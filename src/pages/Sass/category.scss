@@ -1,61 +1,88 @@
-@use '../../assets//global.scss' as *;
+.grid-layout {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-template-rows: 2fr 3fr;
+  gap: 20px;
+  padding: 20px;
+  height: 100vh;
 
-.category{
-    display: grid;
-    padding: 20px;
-    gap: 15px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: minmax(120px, auto);
+  .box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 0;
+    box-shadow: 4px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 
-    .box{
-        height: 100%;
-        padding: 20px;
-        border-radius: 10px;
-        background-color: $bg-white;
-        box-shadow: 5px 5px $bg-shadow;
+    .header {
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 2;
+      padding: 16px 20px;
+      border-bottom: 1px solid #eee;
+      color: #2979ff;
+      font-weight: bold;
     }
 
-    .box1{
-        grid-column: span 3;
+    .scroll-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px 20px;
     }
 
-    .product_group{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    .item {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      transition: 0.2s;
 
+      &:hover {
+        background: #f2f2f2;
+      }
 
-        .name_group{
-            display: flex;
-            justify-content: center;
-            color: $text-primary;
-            background-color: $bg-blue;
-            width: 150px;
-            padding: 20px;
-            border-radius: 10px;
-        }
+      &.active {
+        background: #2979ff;
+        color: white;
+        font-weight: bold;
+      }
     }
 
-    .box2{
-        grid-row: span 2;
-        grid-column: span 1;
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
 
-        height: 255px;
-        overflow: scroll;
+      span:first-child {
+        font-weight: 600;
+      }
+
+      span:last-child {
+        color: #666;
+      }
     }
 
-    .box3{
-        grid-row: span 2;
-        grid-column: span 2;
-
-        height: 255px;
-        overflow-y: scroll;
+    .empty-msg {
+      font-style: italic;
+      color: #aaa;
+      padding: 10px 0;
     }
+  }
 
-    .box4{
-        grid-column: span 3;
-        grid-row: span 4;
-        height: 525px;
-        overflow: scroll;
-    }
+  .box-group {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .box-type {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .box-info {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+  }
 }

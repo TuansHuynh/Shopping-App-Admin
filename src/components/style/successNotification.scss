@@ -1,0 +1,33 @@
+.success-notification {
+  display: flex;
+  align-items: center;
+  background-color: #e6f4ea;
+  border: 1px solid #b6e2c9;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 10px 0;
+  color: #2e7d32;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', sans-serif;
+
+  .icon {
+    margin-right: 12px;
+    svg {
+      stroke: #2e7d32;
+      fill: none;
+    }
+  }
+
+  .content {
+    .message {
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .timestamp {
+      font-size: 12px;
+      color: #5b8e5b;
+      margin-top: 2px;
+    }
+  }
+}

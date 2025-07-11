@@ -1,0 +1,62 @@
+$color-info: #4a90e2;
+$color-success: #2ecc71;
+$color-warning: #f39c12;
+$color-error: #e74c3c;
+
+.general-notification {
+    padding: 16px;
+    margin-bottom: 12px;
+    border-left: 4px solid;
+    border-radius: 8px;
+    background-color: #f9fafc;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #eef4fc;
+    }
+
+    .message {
+        margin: 0 0 6px 0;
+        font-size: 15px;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .timestamp {
+        margin: 0;
+        font-size: 13px;
+        color: #888;
+    }
+
+    &.info {
+        border-left-color: $color-info;
+    }
+
+    &.success {
+        border-left-color: $color-success;
+        background-color: #f0fff5;
+
+        &:hover {
+            background-color: #e2f9eb;
+        }
+    }
+
+    &.warning {
+        border-left-color: $color-warning;
+        background-color: #fffaf0;
+
+        &:hover {
+            background-color: #fdf0d5;
+        }
+    }
+
+    &.error {
+        border-left-color: $color-error;
+        background-color: #fff5f5;
+
+        &:hover {
+            background-color: #ffe3e3;
+        }
+    }
+}
