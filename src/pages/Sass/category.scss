@@ -1,3 +1,8 @@
+$background_color: #f2f2f2;
+$background: #fff;
+$border_bottom: #c2c2c2;
+$color: #2979ff;
+
 .grid-layout {
   display: grid;
   grid-template-columns: 2fr 2fr;
@@ -7,7 +12,7 @@
   height: 100vh;
 
   .box {
-    background: #fff;
+    background: $background;
     border-radius: 10px;
     padding: 0;
     box-shadow: 4px 4px rgba(0, 0, 0, 0.1);
@@ -18,11 +23,11 @@
     .header {
       position: sticky;
       top: 0;
-      background: white;
+      background: $background;
       z-index: 2;
       padding: 16px 20px;
       border-bottom: 1px solid #eee;
-      color: #2979ff;
+      color:$color;
       font-weight: bold;
     }
 
@@ -33,40 +38,50 @@
     }
 
     .item {
+      margin-bottom: 5px;
       padding: 10px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid $border_bottom;
       cursor: pointer;
-      transition: 0.2s;
+      transition: all 0.2s ease-in-out;
 
       &:hover {
-        background: #f2f2f2;
+        background: $background_color;
+        border-radius: 5px;
       }
 
       &.active {
-        background: #2979ff;
-        color: white;
+        background: $color;
+        color: $background;
         font-weight: bold;
+        border-radius: 5px;
+        transform: translateX(5px);
       }
     }
 
     .info-item {
       display: flex;
       justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px solid #eee;
+      margin-bottom: 5px;
+      padding: 8px;
+      border-bottom: 1px solid $border_bottom;
 
       span:first-child {
         font-weight: 600;
       }
 
-      span:last-child {
-        color: #666;
+      // span:last-child {
+      //   color: #666;
+      // }
+
+      &:hover{
+        background-color: $background_color;
+        border-radius: 5px;
       }
     }
 
     .empty-msg {
       font-style: italic;
-      color: #aaa;
+      color: #aaaaaa;
       padding: 10px 0;
     }
   }
@@ -74,6 +89,7 @@
   .box-group {
     grid-column: 1;
     grid-row: 1;
+
   }
 
   .box-type {
