@@ -52,6 +52,7 @@ export default function Dasboard() {
                     statusInventory="in-stock"
                 />
             </div>
+
             {/* <div className="box box6 user_register">box6: Ths is nostification when user register</div> */}
             <div className="box box6 user_register">
                 <UserStatusNotificationProps
@@ -59,7 +60,13 @@ export default function Dasboard() {
                     statusUserStatus= {`${registered}`}
                     time="2 minutes ago"
                 />
+                <UserStatusNotificationProps
+                    username={`${userName}`}
+                    statusUserStatus= {`${registered}`}
+                    time="2 minutes ago"
+                />
             </div>
+
             {/* <div className="box box7 notification">box7: This Is Notification</div> */}
             <div className="box box7 notification">
                 <GeneralStatusNotificationProps
@@ -73,7 +80,6 @@ export default function Dasboard() {
                     timestampGeneralStatus="08:45 AM 08/07/2025"
                     type="warning"
                 />
-
             </div>
 
         </div>
