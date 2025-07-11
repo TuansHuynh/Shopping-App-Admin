@@ -1,11 +1,13 @@
 import "./Sass/dashboard.scss"
 import { Icons } from "../components/common/icons"
 import ChartBox from '../components/common/ChartBox';
-import NotificationBox from "../components/common/NotificationBox";
-import UserRegisterNotification from "../components/common/UserRegisterNotification";
-import GeneralNotification from "../components/common/GeneralNotification";
+import { GeneralStatusNotificationProps, InventoryNotificationBoxProps, UserStatusNotificationProps } from "../components/common/NotificationBox";
 
 export default function Dasboard() {
+
+    const productName = "Samsung S23 Ultra"
+    const userName = "Nguyen Van A"
+    const registered = "registered"
 
     return (
         <div className="dashboard">
@@ -40,34 +42,35 @@ export default function Dasboard() {
 
             {/* <div className="box box5 stock_alert">box5: This is Notification when product in-stock or out-stock</div> */}
             <div className="box box5 stock_alert">
-                <NotificationBox
-                    message="Product is currently out of stock!"
-                    status="out-stock"
+                <InventoryNotificationBoxProps
+                    messageInventoryNotification={`${productName} is currently out of stock!`}
+                    statusInventory="out-stock"
                 />
 
-                <NotificationBox
-                    message="Product is available in stock."
-                    status="in-stock"
+                <InventoryNotificationBoxProps
+                    messageInventoryNotification={`${productName} is available in stock.`}
+                    statusInventory="in-stock"
                 />
             </div>
             {/* <div className="box box6 user_register">box6: Ths is nostification when user register</div> */}
             <div className="box box6 user_register">
-                <UserRegisterNotification
-                    username="nguyenvana"
+                <UserStatusNotificationProps
+                    username={`${userName}`}
+                    statusUserStatus= {`${registered}`}
                     time="2 minutes ago"
                 />
             </div>
             {/* <div className="box box7 notification">box7: This Is Notification</div> */}
             <div className="box box7 notification">
-                <GeneralNotification
-                    message="System running smoothly"
-                    timestamp="08:30 AM 08/07/2025"
+                <GeneralStatusNotificationProps
+                    messageGeneralStatusNotification="System running smoothly"
+                    timestampGeneralStatus="08:30 AM 08/07/2025"
                     type="success"
                 />
 
-                <GeneralNotification
-                    message="Inventory for item #A123 is low!"
-                    timestamp="08:45 AM 08/07/2025"
+                <GeneralStatusNotificationProps
+                    messageGeneralStatusNotification={`Inventory for item ${productName} is low!`}
+                    timestampGeneralStatus="08:45 AM 08/07/2025"
                     type="warning"
                 />
 

@@ -15,7 +15,9 @@
     }
 
     .menu_list {
-        th, td {
+
+        th,
+        td {
             padding: 8px 12px;
             border: 1px solid #ccc;
             text-align: center;
@@ -27,6 +29,10 @@
 
         &.list_product_taskbar:hover {
             background-color: #f0f8ff;
+        }
+
+        .icon{
+            display: flex;
         }
     }
 

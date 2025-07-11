@@ -16,13 +16,13 @@
 
     .box1 {
         grid-row: span 5;
-        grid-column: span 3;
+        grid-column: span 4;
         height: 560px;
     }
 
     .box2 {
-        grid-column: span 1;
-        grid-row: span 5;
+        grid-column: span 4;
+        grid-row: span 3;
     }
 
     .box3 {
@@ -44,6 +44,7 @@
         justify-content: center;
         gap: 20px;
         cursor: pointer;
+        transition: all 0.2s ease-in-out;
 
         .import{
             color: #2563EB;
@@ -54,5 +55,10 @@
             color: #2563EB;
             width: 40px;
         }
+
+        &:hover{
+            background-color: #e4edff;
+        }
     }
+
 }

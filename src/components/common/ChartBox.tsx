@@ -2,32 +2,32 @@ import { useState } from 'react';
 import '../style/chartBox.scss';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
-const statsData = [
-    {
-        title: "Total Revenue",
-        value: "$383.0k",
-        change: "+2.0%",
-        trend: "up"
-    },
-    {
-        title: "Profit Margin",
-        value: "36.5%",
-        change: "+1.0%",
-        trend: "up"
-    },
-    {
-        title: "Conversion Rate",
-        value: "1.8%",
-        change: "+1.5%",
-        trend: "up"
-    },
-    {
-        title: "Abandoned Carts",
-        value: "128",
-        change: "-5.6%",
-        trend: "down"
-    }
-];
+// const statsData = [
+//     {
+//         title: "Total Revenue",
+//         value: "$383.0k",
+//         change: "+2.0%",
+//         trend: "up"
+//     },
+//     {
+//         title: "Profit Margin",
+//         value: "36.5%",
+//         change: "+1.0%",
+//         trend: "up"
+//     },
+//     {
+//         title: "Conversion Rate",
+//         value: "1.8%",
+//         change: "+1.5%",
+//         trend: "up"
+//     },
+//     {
+//         title: "Abandoned Carts",
+//         value: "128",
+//         change: "-5.6%",
+//         trend: "down"
+//     }
+// ];
 
 
 export default function ChartBox() {
@@ -86,16 +86,16 @@ export default function ChartBox() {
                         </button>
                     ))}
                 </div>
-                <div className="actions">
+                {/* <div className="actions">
                     <select>
                         <option>All Categories</option>
                     </select>
                     <button>Export Data</button>
                     <button>Customize</button>
-                </div>
+                </div> */}
             </div>
 
-            <div className="stats">
+            {/* <div className="stats">
                 {statsData.map((stat, index) => (
                     <div className="card" key={index}>
                         <p>{stat.title}</p>
@@ -105,18 +105,18 @@ export default function ChartBox() {
                         </span>
                     </div>
                 ))}
-            </div>
+            </div> */}
 
 
             <div className="chart">
                 <h3>Sales Analytics</h3>
-                <ResponsiveContainer width="100%" height={300}>
-                    <LineChart data={data}>
+                <ResponsiveContainer width="100%" height={300} >
+                    <LineChart data={data} className='line_chart'>
                         <XAxis dataKey="name" />
                         <YAxis />
                         <Tooltip />
-                        <Line type="monotone" dataKey="revenue" stroke="#4a90e2" dot={false} />
-                        <Line type="monotone" dataKey="profit" stroke="#2ecc71" dot={false} />
+                        <Line type="monotone" dataKey="revenue" stroke="#4a90e2" dot={true} />
+                        <Line type="monotone" dataKey="profit" stroke="#2ecc71" dot={true} />
                     </LineChart>
                 </ResponsiveContainer>
             </div>
