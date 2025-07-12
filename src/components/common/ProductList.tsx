@@ -35,8 +35,8 @@ export default function ProductList() {
             <table>
                 <thead>
                     <tr className='menu_list menu_taskbar'>
-                        <th>id</th>
-                        <th>name</th>
+                        <th>Id</th>
+                        <th>Name</th>
                         <th>Image</th>
                         <th>Price</th>
                         <th>Discount</th>

@@ -18,37 +18,37 @@ export default function Inventory() {
     ];
 
     const productInfo = [
-    ...Array.from({ length: 10 }, (_, i) => ({
-        id: i + 1,
-        name: 'Samsung ' + (i + 1),
-        typeId: 1,
-    })),
-    ...Array.from({ length: 10 }, (_, i) => ({
-        id: i + 11,
-        name: 'iPhone ' + (i + 1),
-        typeId: 2,
-    })),
-    ...Array.from({ length: 10 }, (_, i) => ({
-        id: i + 21,
-        name: 'Asus ' + (i + 1),
-        typeId: 3,
-    })),
-    ...Array.from({ length: 10 }, (_, i) => ({
-        id: i + 31,
-        name: 'HP ' + (i + 1),
-        typeId: 4,
-    })),
-    ...Array.from({ length: 10 }, (_, i) => ({
-        id: i + 41,
-        name: 'Headphone ' + (i + 1),
-        typeId: 5,
-    })),
-    ...Array.from({ length: 10 }, (_, i) => ({
-        id: i + 51,
-        name: 'Earphone ' + (i + 1),
-        typeId: 6,
-    })),
-];
+        ...Array.from({ length: 10 }, (_, i) => ({
+            id: i + 1,
+            name: 'Samsung ' + (i + 1),
+            typeId: 1,
+        })),
+        ...Array.from({ length: 10 }, (_, i) => ({
+            id: i + 11,
+            name: 'iPhone ' + (i + 1),
+            typeId: 2,
+        })),
+        ...Array.from({ length: 10 }, (_, i) => ({
+            id: i + 21,
+            name: 'Asus ' + (i + 1),
+            typeId: 3,
+        })),
+        ...Array.from({ length: 10 }, (_, i) => ({
+            id: i + 31,
+            name: 'HP ' + (i + 1),
+            typeId: 4,
+        })),
+        ...Array.from({ length: 10 }, (_, i) => ({
+            id: i + 41,
+            name: 'Headphone ' + (i + 1),
+            typeId: 5,
+        })),
+        ...Array.from({ length: 10 }, (_, i) => ({
+            id: i + 51,
+            name: 'Earphone ' + (i + 1),
+            typeId: 6,
+        })),
+    ];
 
     const [selectedGroupId, setSelectedGroupId] = useState<number | null>(1);
     const [selectedTypeId, setSelectedTypeId] = useState<number | null>(1);
@@ -67,7 +67,8 @@ export default function Inventory() {
                             className={`item ${group.id === selectedGroupId ? 'active' : ''}`}
                             onClick={() => {
                                 setSelectedGroupId(group.id);
-                                setSelectedTypeId(null);
+                                const firstType = productType.find(type => type.groupId === group.id);
+                                setSelectedTypeId(firstType ? firstType.id : null);
                             }}
                         >
                             {group.name}
