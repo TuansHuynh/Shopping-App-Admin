@@ -44,6 +44,7 @@ export default function ProductList() {
                         <th>Quantity</th>
                         <th>Rate</th>
                         <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,10 +58,8 @@ export default function ProductList() {
                             <td>{item.priceDiscount}</td>
                             <td>{item.quantity}</td>
                             <td>{item.rate}</td>
-                            <td className='icon'>
-                                <Icons.Edit/>
-                                <Icons.Delete/>
-                            </td>
+                            <td><Icons.Edit/></td>
+                            <td><Icons.Delete/></td>
                         </tr>
                     ))}
                 </tbody>

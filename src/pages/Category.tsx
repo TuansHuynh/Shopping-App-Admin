@@ -20,7 +20,7 @@ export default function Inventory() {
     const productInfo = [
     ...Array.from({ length: 10 }, (_, i) => ({
         id: i + 1,
-        name: 'Samsung A' + (i + 1),
+        name: 'Samsung ' + (i + 1),
         typeId: 1,
     })),
     ...Array.from({ length: 10 }, (_, i) => ({
@@ -50,8 +50,8 @@ export default function Inventory() {
     })),
 ];
 
-    const [selectedGroupId, setSelectedGroupId] = useState<number | null>(null);
-    const [selectedTypeId, setSelectedTypeId] = useState<number | null>(null);
+    const [selectedGroupId, setSelectedGroupId] = useState<number | null>(1);
+    const [selectedTypeId, setSelectedTypeId] = useState<number | null>(1);
 
     const filteredTypes = productType.filter(type => type.groupId === selectedGroupId);
     const filteredProducts = productInfo.filter(product => product.typeId === selectedTypeId);
