@@ -1,8 +1,8 @@
-@use '../../assets/global.scss' as * ;
+@use '../../assets/global.scss' as *;
 
 .product {
     display: grid;
-    padding: 20px;  
+    padding: 20px;
     gap: 15px;
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: minmax(100px, auto);
@@ -14,24 +14,51 @@
         box-shadow: 5px 5px $bg-shadow;
     }
 
-    .box1{
+    .box1 {
         grid-row: span 5;
-        grid-column: span 3;
+        grid-column: span 4;
+        height: 560px;
     }
 
-    .box2{
-        grid-column: span 1;
-        grid-row: span 5;
+    .box2 {
+        grid-column: span 4;
+        grid-row: span 3;
     }
 
-    .box3{
+    .box3 {
         grid-column: span 4;
         grid-row: span 2;
     }
 
-    .box4, .box5{
+    .box4,
+    .box5 {
         grid-row: 1;
         grid-row: span 1;
         grid-column: span 2;
     }
+
+    .box4,
+    .box5 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+        .import{
+            color: #2563EB;
+            width: 40px;
+        }
+        
+        .edit {
+            color: #2563EB;
+            width: 40px;
+        }
+
+        &:hover{
+            background-color: #e4edff;
+        }
+    }
+
 }

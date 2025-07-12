@@ -1,0 +1,84 @@
+.product_list {
+    max-height: 500px;
+    overflow-y: auto;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    thead th {
+        position: sticky;
+        top: 0;
+        background-color: #f4f4f4;
+        z-index: 2;
+    }
+
+    .menu_list {
+
+        th,
+        td {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        &.menu_taskbar {
+            font-weight: bold;
+        }
+
+        &.list_product_taskbar:hover {
+            background-color: #f0f8ff;
+        }
+
+        td svg {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+        }
+
+        // Icon màu riêng cho từng loại
+        td:nth-child(9) svg {
+            // Edit column
+            color: #1976d2; // xanh dương
+        }
+
+        td:nth-child(10) svg {
+            // Delete column
+            color: #d32f2f; // đỏ
+        }
+
+        td:nth-child(9) svg:hover {
+            transform: scale(1.2);
+            color: #1565c0;
+        }
+
+        td:nth-child(10) svg:hover {
+            transform: scale(1.2);
+            color: #b71c1c;
+        }
+    }
+
+    img {
+        border-radius: 4px;
+    }
+
+    // 💅 Scrollbar style đẹp
+    scrollbar-width: thin;
+    scrollbar-color: #e6e6e6 transparent;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #90caf9;
+        border-radius: 10px;
+    }
+}
