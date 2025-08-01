@@ -1,12 +1,13 @@
-import { useState } from 'react';
-import './Sass/category.scss';
+import { useState } from 'react'
+import './Sass/category.scss'
+import { formatCurrency } from '../utils/format'
 
 export default function Inventory() {
     const productGroup = [
         { id: 1, name: 'Smartphone' },
         { id: 2, name: 'Laptop' },
         { id: 3, name: 'Accessory' },
-    ];
+    ]
 
     const productType = [
         { id: 1, name: 'Samsung', groupId: 1 },
@@ -15,46 +16,50 @@ export default function Inventory() {
         { id: 4, name: 'HP', groupId: 2 },
         { id: 5, name: 'Headphone', groupId: 3 },
         { id: 6, name: 'Earphone', groupId: 3 },
-    ];
+    ]
 
+    const generateProducts = (typeId: number, namePrefix: string, startId: number) =>
+        Array.from({ length: 10 }, (_, i) => {
+
+            // Giả sử mỗi sản phẩm có ID bắt đầu từ startId
+            // const stock = 20 - i
+
+            // Số lượng sản phẩm ngẫu nhiên từ 0 đến 20
+            const stock = Math.floor(Math.random() * 21)
+
+            // Trạng thái sản phẩm dựa trên số lượng
+            let status = 'Available'
+            if (stock === 0) status = 'Out of Stock'
+            else if (stock < 10) status = 'Low Stock'
+
+            // Trả về đối tượng sản phẩm
+            return {
+                id: startId + i,
+                name: `${namePrefix} ${i + 1}`,
+                typeId,
+                price: 1000000 + i * 50000,
+                stock,
+                status,
+            }
+        })
+
+    // Tạo dữ liệu sản phẩm cho mỗi loại
     const productInfo = [
-        ...Array.from({ length: 10 }, (_, i) => ({
-            id: i + 1,
-            name: 'Samsung ' + (i + 1),
-            typeId: 1,
-        })),
-        ...Array.from({ length: 10 }, (_, i) => ({
-            id: i + 11,
-            name: 'iPhone ' + (i + 1),
-            typeId: 2,
-        })),
-        ...Array.from({ length: 10 }, (_, i) => ({
-            id: i + 21,
-            name: 'Asus ' + (i + 1),
-            typeId: 3,
-        })),
-        ...Array.from({ length: 10 }, (_, i) => ({
-            id: i + 31,
-            name: 'HP ' + (i + 1),
-            typeId: 4,
-        })),
-        ...Array.from({ length: 10 }, (_, i) => ({
-            id: i + 41,
-            name: 'Headphone ' + (i + 1),
-            typeId: 5,
-        })),
-        ...Array.from({ length: 10 }, (_, i) => ({
-            id: i + 51,
-            name: 'Earphone ' + (i + 1),
-            typeId: 6,
-        })),
-    ];
+        ...generateProducts(1, 'Samsung', 1),
+        ...generateProducts(2, 'iPhone', 11),
+        ...generateProducts(3, 'Asus', 21),
+        ...generateProducts(4, 'HP', 31),
+        ...generateProducts(5, 'Headphone', 41),
+        ...generateProducts(6, 'Earphone', 51),
+    ]
 
-    const [selectedGroupId, setSelectedGroupId] = useState<number | null>(1);
-    const [selectedTypeId, setSelectedTypeId] = useState<number | null>(1);
+    // State để lưu trữ ID của nhóm và loại sản phẩm đã chọn
+    const [selectedGroupId, setSelectedGroupId] = useState<number | null>(1)
+    const [selectedTypeId, setSelectedTypeId] = useState<number | null>(1)
 
-    const filteredTypes = productType.filter(type => type.groupId === selectedGroupId);
-    const filteredProducts = productInfo.filter(product => product.typeId === selectedTypeId);
+    // Lọc các loại sản phẩm và sản phẩm dựa trên nhóm và loại đã chọn
+    const filteredTypes = productType.filter(type => type.groupId === selectedGroupId)
+    const filteredProducts = productInfo.filter(product => product.typeId === selectedTypeId)
 
     return (
         <div className="grid-layout">
@@ -66,9 +71,9 @@ export default function Inventory() {
                             key={group.id}
                             className={`item ${group.id === selectedGroupId ? 'active' : ''}`}
                             onClick={() => {
-                                setSelectedGroupId(group.id);
-                                const firstType = productType.find(type => type.groupId === group.id);
-                                setSelectedTypeId(firstType ? firstType.id : null);
+                                setSelectedGroupId(group.id)
+                                const firstType = productType.find(type => type.groupId === group.id)
+                                setSelectedTypeId(firstType ? firstType.id : null)
                             }}
                         >
                             {group.name}
@@ -100,23 +105,54 @@ export default function Inventory() {
                 <div className="header">Products</div>
                 <div className="scroll-content">
                     {selectedTypeId ? (
-                        filteredProducts.map(product => (
-                            <div key={product.id} className="info-item">
-                                <span>{product.id}</span>
-                                <span>{product.name}</span>
-                                <span>{product.name}</span>
-                                <span>{product.name}</span>
-                                <span>{product.name}</span>
-                                <span>{product.name}</span>
-                                <span>{product.name}</span>
-                            </div>
-                        ))
+                        filteredProducts.length > 0 ? (
+                            <>
+                                <div className="info-item info-header">
+                                    <span>ID</span>
+                                    <span>Name</span>
+                                    <span>Type</span>
+                                    <span>Group</span>
+                                    <span>Price</span>
+                                    <span>Stock</span>
+                                    <span>Status</span>
+                                </div>
+
+                                {filteredProducts.map(product => {
+                                    const type = productType.find(t => t.id === product.typeId)
+                                    const group = productGroup.find(g => g.id === type?.groupId)
+
+                                    return (
+                                        <div key={product.id} className={`info-item ${product.status === 'Out of Stock' ? 'out-of-stock' : ''}`}>
+                                            <span>{product.id}</span>
+                                            <span>{product.name}</span>
+                                            <span>{type?.name}</span>
+                                            <span>{group?.name}</span>
+                                            <span>{formatCurrency(product.price, 'VND')}</span>
+                                            <span>{product.stock}</span>
+                                            <span>
+                                                <span className={
+                                                    product.status === 'Available'
+                                                        ? 'status-available'
+                                                        : product.status === 'Low Stock'
+                                                            ? 'status-low'
+                                                            : 'status-out'
+                                                }>
+                                                    {product.status}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    )
+                                })}
+                            </>
+                        ) : (
+                            <p className="empty-msg">Chưa có sản phẩm</p>
+                        )
                     ) : (
                         <p className="empty-msg">Select a product type</p>
                     )}
+
                 </div>
             </div>
         </div>
-
-    );
+    )
 }

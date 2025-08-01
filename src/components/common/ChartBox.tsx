@@ -31,7 +31,7 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'rec
 
 
 export default function ChartBox() {
-    const [activeRange, setActiveRange] = useState("90 Days");
+    const [activeRange, setActiveRange] = useState("30 Days");
     const ranges = ["7 Days", "30 Days", "90 Days", "12 Months"];
 
     const dataMap: Record<string, { name: string; revenue: number; profit: number }[]> = {
@@ -86,13 +86,14 @@ export default function ChartBox() {
                         </button>
                     ))}
                 </div>
-                {/* <div className="actions">
+                <div className="actions">
                     <select>
                         <option>All Categories</option>
+                        <option>Phone</option>
                     </select>
                     <button>Export Data</button>
                     <button>Customize</button>
-                </div> */}
+                </div>
             </div>
 
             {/* <div className="stats">

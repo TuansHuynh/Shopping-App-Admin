@@ -1,0 +1,152 @@
+.edit-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.edit-modal {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 550px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #555;
+
+    &:hover {
+        color: #f44336;
+    }
+}
+
+.form-title {
+    margin-bottom: 1rem;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+.form-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+        font-weight: 600;
+        color: #555;
+    }
+
+    input,
+    select {
+        padding: 0.75rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        transition: border-color 0.2s;
+
+        &:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+    }
+}
+
+.image-preview-container {
+    display: flex;
+    gap: 0.5rem;
+
+    .image-preview {
+        width: 15vh;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    input[type="file"] {
+        font-size: 14px;
+    }
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-save {
+    background-color: #4CAF50;
+    color: white;
+
+    &:hover {
+        background-color: #43a047;
+    }
+}
+
+.btn-cancel {
+    background-color: #f44336;
+    color: white;
+
+    &:hover {
+        background-color: #e53935;
+    }
+}
+
+@media (max-width: 480px) {
+    .edit-modal {
+        padding: 1rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+
+        .btn {
+            width: 100%;
+        }
+    }
+}
