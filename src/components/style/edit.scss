@@ -11,16 +11,30 @@
     z-index: 999;
 }
 
+// .edit-modal {
+//     background: #fff;
+//     padding: 2rem;
+//     border-radius: 16px;
+//     width: 100%;
+//     max-width: 550px;
+//     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+//     position: relative;
+//     animation: fadeIn 0.3s ease-in-out;
+// }
+
 .edit-modal {
     background: #fff;
     padding: 2rem;
     border-radius: 16px;
-    width: 100%;
-    max-width: 550px;
+    width: 90vw; // thay vì max-width cố định
+    max-width: 1000px; // cho desktop lớn
+    height: 90vh; // cao gần full chiều cao
+    overflow-y: auto; // có scroll nếu nội dung vượt quá
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     position: relative;
     animation: fadeIn 0.3s ease-in-out;
 }
+
 
 @keyframes fadeIn {
     from {

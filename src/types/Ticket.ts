@@ -1,4 +1,4 @@
-export interface Ticket {
+export interface TicketResponse {
     id: number;
     code: string;
     discount_value: number;

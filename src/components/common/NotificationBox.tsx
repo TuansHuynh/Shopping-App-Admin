@@ -12,7 +12,7 @@ type InventoryNotificationBoxProps = {
     statusInventory: 'in-stock' | 'out-stock';
 };
 
-export const InventoryNotificationBoxProps: React.FC<InventoryNotificationBoxProps> = ({messageInventoryNotification, statusInventory}) => {
+export const InventoryNotificationBoxProps: React.FC<InventoryNotificationBoxProps> = ({ messageInventoryNotification, statusInventory }) => {
     return (
         <div className={`notification-box ${statusInventory}`}>
             <span className="dot" />
@@ -27,7 +27,7 @@ type GeneralStatusNotificationProps = {
     type?: 'info' | 'success' | 'warning' | 'error';
 };
 
-export const GeneralStatusNotificationProps: React.FC<GeneralStatusNotificationProps> = ({messageGeneralStatusNotification, timestampGeneralStatus, type = 'info'}) => {
+export const GeneralStatusNotificationProps: React.FC<GeneralStatusNotificationProps> = ({ messageGeneralStatusNotification, timestampGeneralStatus, type = 'info' }) => {
     return (
         <div className={`general-notification ${type}`}>
             <p className="message">{messageGeneralStatusNotification}</p>
@@ -42,7 +42,7 @@ type UserStatusNotificationProps = {
     time: string;
 };
 
-export const UserStatusNotificationProps: React.FC<UserStatusNotificationProps> = ({username, statusUserStatus, time}) => {
+export const UserStatusNotificationProps: React.FC<UserStatusNotificationProps> = ({ username, statusUserStatus, time }) => {
     return (
         <div className="notification-box user-register">
             <div className="icon">👤</div>
@@ -60,15 +60,23 @@ type AddedProductSuccessNotificationProps = {
     statusAdded: 'successfully' | 'failed' | 'pending' | 'warning' | 'info' | '';
 };
 
-export const AddedProductSuccessNotificationProps: React.FC<AddedProductSuccessNotificationProps> = ({messageAddedProduct, timestampAddeduserSucces, statusAdded = "successfully"}) => {
+export const AddedProductSuccessNotificationProps: React.FC<AddedProductSuccessNotificationProps> = ({
+    messageAddedProduct,
+    timestampAddeduserSucces,
+    statusAdded = "successfully"
+}) => {
     return (
-        <div className="success-notification">
+        <div className={`success-notification ${statusAdded}`}>
             <div className="icon">
                 <Icons.CheckCircle width={24} height={24} />
             </div>
-            <div className={`content ${statusAdded}`}>
-                <p className="message">{messageAddedProduct}</p>
-                {timestampAddeduserSucces && <p className="timestamp">{timestampAddeduserSucces}</p>}
+            <div className="content">
+                <p className="message">
+                    {messageAddedProduct || "A new product has been added successfully!"}
+                </p>
+                {timestampAddeduserSucces && (
+                    <p className="timestamp">{timestampAddeduserSucces}</p>
+                )}
             </div>
         </div>
     );

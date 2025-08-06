@@ -1,21 +1,11 @@
 import { useRef, useState } from 'react'
 import '../style/edit.scss'
 import { useClickOutside } from '../../hooks/useClickOutside'
-
-type ProductType = {
-    id: number
-    name: string
-    image: string
-    price: number
-    priceDiscount: number
-    discount: number
-    quantity: number
-    rate: number
-}
+import type { ProductResponse } from '../../types/Product'
 
 type EditProps = {
     onClose: () => void
-    product: ProductType
+    product: ProductResponse
 }
 
 export default function Edit({ onClose, product }: EditProps) {
@@ -23,9 +13,11 @@ export default function Edit({ onClose, product }: EditProps) {
     useClickOutside(modalRef, onClose)
 
     const [previewImage, setPreviewImage] = useState<string>(product.image)
-    const [productName, setProductName] = useState<string>(product.name)
-    const [price, setPrice] = useState<number>(product.price)
-    const [description, setDescription] = useState<string>("")
+    const [selectedImage, setSelectedImage] = useState<File | null>(null)
+
+    const [productName, setProductName] = useState(product.name)
+    const [price, setPrice] = useState(product.price)
+    const [quantity, setQuantity] = useState(product.quantity)
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
@@ -35,7 +27,36 @@ export default function Edit({ onClose, product }: EditProps) {
                 setPreviewImage(reader.result as string)
             }
             reader.readAsDataURL(file)
+            setSelectedImage(file)
         }
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+
+        const formData = new FormData()
+        formData.append("id", product.id.toString())
+        formData.append("name", productName)
+        formData.append("price", price.toString())
+        formData.append("quantity", quantity.toString())
+        // formData.append("description", description)
+
+        if (selectedImage) {
+            formData.append("image", selectedImage)
+        }
+
+        // Các trường thêm nếu có
+        if (product.discountId) formData.append("discountId", product.discountId.toString())
+        if (product.categoryId) formData.append("categoryId", product.categoryId.toString())
+        if (product.groupId) formData.append("groupId", product.groupId.toString())
+        if (product.typeId) formData.append("typeId", product.typeId.toString())
+
+        console.log("FormData gửi lên:")
+        for (const pair of formData.entries()) {
+            console.log(pair[0], pair[1])
+        }
+
+        onClose()
     }
 
     return (
@@ -43,7 +64,7 @@ export default function Edit({ onClose, product }: EditProps) {
             <div className="edit-modal" ref={modalRef}>
                 <button className="close-btn" onClick={onClose}>✖</button>
 
-                <form className="form-grid">
+                <form className="form-grid" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Product Name</label>
                         <input
@@ -56,7 +77,15 @@ export default function Edit({ onClose, product }: EditProps) {
                     <div className="form-group">
                         <label>Product Image</label>
                         <div className="image-preview-container">
-                            <img src={previewImage} alt="Preview" className="image-preview" />
+                            <img
+                                src={
+                                    selectedImage
+                                        ? previewImage
+                                        : `http://localhost:8080/api/product/image/${product.image}`
+                                }
+                                alt="Preview"
+                                className="image-preview"
+                            />
                             <input type="file" accept="image/*" onChange={handleImageChange} />
                         </div>
                     </div>
@@ -71,22 +100,22 @@ export default function Edit({ onClose, product }: EditProps) {
                     </div>
 
                     <div className="form-group">
-                        <label>Category</label>
-                        <select defaultValue="phone">
-                            <option value="">Select category</option>
-                            <option value="phone">Phone</option>
-                            <option value="laptop">Laptop</option>
-                            <option value="accessory">Accessory</option>
-                        </select>
+                        <label>Quantity</label>
+                        <input
+                            type="number"
+                            value={quantity}
+                            onChange={e => setQuantity(Number(e.target.value))}
+                        />
                     </div>
 
                     <div className="form-group">
                         <label>Description</label>
-                        <input
-                            type="text"
-                            value={description}
-                            onChange={e => setDescription(e.target.value)}
-                        />
+                        <ul style={{ paddingLeft: '20px' }}>
+                            {Array.isArray(product.description) &&
+                                product.description.map((line, index) => (
+                                    <li key={index}>{line}</li>
+                                ))}
+                        </ul>
                     </div>
 
                     <div className="form-actions">

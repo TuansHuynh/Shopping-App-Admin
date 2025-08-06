@@ -1,44 +1,38 @@
 import '../style/productlist.scss'
 import { Icons } from './icons';
-import { useState } from 'react'
-import Edit from './Edit' // Đảm bảo path đúng
+import { useState, useEffect } from 'react'
+import Edit from './Edit'
+import  { type ProductResponse } from '../../types/Product';
+import { useGetProductAll, useDeleteProduct } from '../../hooks/useProduct';
 
-type ProductType = {
-    id: number
-    name: string
-    image: string
-    price: number
-    priceDiscount: number
-    discount: number
-    quantity: number
-    rate: number
-}
 
-export default function ProductList() {
-    const [product] = useState<ProductType[]>([
-        { id: 1, name: 'iPhone 14', image: '/image/Iphone 14.jpg', price: 10000000, priceDiscount: 9000000, discount: 0.1, quantity: 100, rate: 4.1 },
-        { id: 2, name: 'Asus ROG Strix Scar 18', image: '/image/Asus ROG Strix Scar 18.jpg', price: 10000000, priceDiscount: 9000000, discount: 0.1, quantity: 100, rate: 4.6 },
-        { id: 1, name: 'iPhone 14', image: '/image/Iphone 14.jpg', price: 10000000, priceDiscount: 9000000, discount: 0.1, quantity: 100, rate: 4.1 },
-        { id: 2, name: 'Asus ROG Strix Scar 18', image: '/image/Asus ROG Strix Scar 18.jpg', price: 10000000, priceDiscount: 9000000, discount: 0.1, quantity: 100, rate: 4.6 },
-        { id: 1, name: 'iPhone 14', image: '/image/Iphone 14.jpg', price: 10000000, priceDiscount: 9000000, discount: 0.1, quantity: 100, rate: 4.1 },
-        { id: 2, name: 'Asus ROG Strix Scar 18', image: '/image/Asus ROG Strix Scar 18.jpg', price: 10000000, priceDiscount: 9000000, discount: 0.1, quantity: 100, rate: 4.6 },
-        { id: 1, name: 'iPhone 14', image: '/image/Iphone 14.jpg', price: 10000000, priceDiscount: 9000000, discount: 0.1, quantity: 100, rate: 4.1 },
-        { id: 2, name: 'Asus ROG Strix Scar 18', image: '/image/Asus ROG Strix Scar 18.jpg', price: 10000000, priceDiscount: 9000000, discount: 0.1, quantity: 100, rate: 4.6 },
-        { id: 1, name: 'iPhone 14', image: '/image/Iphone 14.jpg', price: 10000000, priceDiscount: 9000000, discount: 0.1, quantity: 100, rate: 4.1 },
-        { id: 2, name: 'Asus ROG Strix Scar 18', image: '/image/Asus ROG Strix Scar 18.jpg', price: 10000000, priceDiscount: 9000000, discount: 0.1, quantity: 100, rate: 4.6 },
-        { id: 1, name: 'iPhone 14', image: '/image/Iphone 14.jpg', price: 10000000, priceDiscount: 9000000, discount: 0.1, quantity: 100, rate: 4.1 },
-        { id: 2, name: 'Asus ROG Strix Scar 18', image: '/image/Asus ROG Strix Scar 18.jpg', price: 10000000, priceDiscount: 9000000, discount: 0.1, quantity: 100, rate: 4.6 },
-    ])
+export default function ProductList({ reload }: { reload?: boolean }) {
+    const [refresh, setRefresh] = useState(false);
 
-    const [editingProduct, setEditingProduct] = useState<ProductType | null>(null)
+    // Truyền refresh vào hook để trigger reload
+    const products = useGetProductAll(refresh);
+    const { remove } = useDeleteProduct(); // hook xóa sản phẩm
+    const [editingProduct, setEditingProduct] = useState<ProductResponse | null>(null);
 
-    const handleEditClick = (product: ProductType) => {
-        setEditingProduct(product)
-    }
+    const handleEditClick = (product: ProductResponse) => {
+        setEditingProduct(product);
+    };
 
     const handleCloseEdit = () => {
-        setEditingProduct(null)
-    }
+        setEditingProduct(null);
+    };
+
+    const handleDelete = async (id: number) => {
+        if (window.confirm('Are you sure you want to delete this product?')) {
+            await remove(id);
+            setRefresh(r => !r); // trigger reload
+        }
+    };
+
+    // Khi prop reload thay đổi (từ cha), cũng trigger reload
+    useEffect(() => {
+        setRefresh(r => !r);
+    }, [reload]);
 
     return (
         <div className="product_list">
@@ -58,23 +52,29 @@ export default function ProductList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {product.map(item => (
+                    {products.map(item => (
                         <tr key={item.id} className='menu_list list_product_taskbar'>
                             <td>{item.id}</td>
                             <td>{item.name}</td>
-                            <td><img src={item.image} alt={item.name} width={40} /></td>
+                            <td><img src={`http://localhost:8080/api/product/image/${item.image}`} alt={item.name} width={40} /></td>
                             <td>{item.price}</td>
-                            <td>{item.discount}</td>
-                            <td>{item.priceDiscount}</td>
+                            <td>{item.discountValue} %</td>
+                            <td>{item.finalPrice}</td>
                             <td>{item.quantity}</td>
-                            <td>{item.rate}</td>
+                            <td>{item.rate ?? 'N/A'}</td>
                             <td>
-                                <button onClick={() => handleEditClick(item)} style={{ border: 'none', backgroundColor: 'transparent' }}>
-                                    <Icons.Edit style={{ border: 'none' }} />
+                                <button
+                                    onClick={() => handleEditClick(item)}
+                                    style={{ border: 'none', backgroundColor: 'transparent' }}
+                                >
+                                    <Icons.Edit />
                                 </button>
                             </td>
                             <td>
-                                <button style={{ border: 'none', backgroundColor: 'transparent' }}>
+                                <button
+                                    style={{ border: 'none', backgroundColor: 'transparent', color: 'red', cursor: 'pointer' }}
+                                    onClick={() => handleDelete(item.id)}
+                                >
                                     <Icons.Delete />
                                 </button>
                             </td>

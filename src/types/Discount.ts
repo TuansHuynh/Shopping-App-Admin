@@ -1,10 +1,10 @@
-export interface Discount {
+export interface DiscountResponse {
     id: number;
     code: string;
-    name: string;
-    start_at: string;
     end_at: string;
-    value: number;
     is_active: boolean;
     is_percentage: boolean;
+    name: string;
+    start_at: string;
+    value: number;
 }

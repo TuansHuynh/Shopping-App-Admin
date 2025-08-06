@@ -1,4 +1,4 @@
-export interface User {
+export interface UserResponse {
     id: number;
     address: string;
     birthdate: string;
@@ -6,13 +6,6 @@ export interface User {
     firstname: string;
     lastname: string;
     password: string;
-    phone_number: number;
+    phone_number: string;
     user_name: string;
-    roles: UserRole[];
-}
-
-export interface UserRole {
-    id: number;
-    role_name: string;
-    user_id: number;
 }
